@@ -1,6 +1,6 @@
 import { useState } from "react";
-
-export default function useVisualMode (initial) {
+// credit to: https://github.com/yuzhakova/scheduler/blob/master/src/hooks/useVisualMode.js
+export default function useVisualMode(initial) {
     const [mode, setMode] = useState(initial);
     const [history, setHistory] = useState([initial]);
     const transition = (newMode, replace) => {
@@ -15,7 +15,9 @@ export default function useVisualMode (initial) {
         let newModeTrans = [...history];
         newModeTrans.pop(mode);
         setHistory((prev) => newModeTrans);
-        setMode((prev) => newModeTrans[(newModeTrans.length - 1)]);
+        if (history.length > 1) {
+            setMode((prev) => newModeTrans[(newModeTrans.length - 1)]);
+        }
     }
     return { mode, transition, back };
 }
