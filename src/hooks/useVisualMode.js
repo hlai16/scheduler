@@ -9,6 +9,11 @@ export default function useVisualMode(initial) {
             let newModeTrans = [...history];
             newModeTrans.push(newMode);
             setHistory((prev) => newModeTrans);
+        } else {
+            setMode((prev) => newMode)
+            let replaceHistory = [...history];
+            replaceHistory[replaceHistory.length - 1] = mode;
+            setHistory((prev) => replaceHistory);
         }
     }
     const back = () => {
