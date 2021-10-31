@@ -59,6 +59,5 @@ export function getInterviewersForDay(state, day) {
             }
         }
     }
-    console.log(interviewersObj);
     return interviewersObj;
 }
