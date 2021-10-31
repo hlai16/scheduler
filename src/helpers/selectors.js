@@ -40,3 +40,25 @@ export function getInterview(state, interview) {
         }
     }
 }
+
+export function getInterviewersForDay(state, day) {
+    const interviewersObj = [];
+    if (state.days.length <= 0) {
+        return [];
+    }
+
+    const filteredDays = state.days.filter(daySelected => daySelected.name === day);
+    if (filteredDays.length <= 0) {
+        return [];
+    }
+    const apptArr = filteredDays[0].appointments;
+    for (const id of apptArr) {
+        for (const key in state.interviewers) {
+            if (id == key) {
+                interviewersObj.push(state.interviewers[key]);
+            }
+        }
+    }
+    console.log(interviewersObj);
+    return interviewersObj;
+}
