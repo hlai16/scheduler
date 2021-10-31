@@ -21,7 +21,7 @@ export default function Appointment(props) {
     return (
         <article className="appointment">
             <Header time={props.time} />
-            {mode === EMPTY && <Empty onAdd={() => {transition(CREATE, null) && <Form />}} />}
+            {mode === EMPTY && <Empty onAdd={() => {transition(CREATE, null)}}/>}
             {mode === SHOW && (
                 <Show
                     student={props.interview.student}
