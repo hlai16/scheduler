@@ -1,5 +1,4 @@
 import React from "react";
-// import { useState } from "react";
 import './styles.scss';
 import useVisualMode from "hooks/useVisualMode";
 import Header from "./Header";
@@ -32,7 +31,7 @@ export default function Appointment(props) {
                 <Form
                     name={props.name}
                     value={props.value}
-                    interviewers={[]}
+                    interviewers={props.interviewers}
                     onSave={props.onSave}
                     onCancel={back}
                 />}
