@@ -24,6 +24,7 @@ export function getAppointmentsForDay(state, day) {
 export function getInterview(state, interview) {
     let newObj = {};
     if (!interview) {
+        // console.log('inside null interview block', interview)
         return null;
     }
     for (const key in state.interviewers){
