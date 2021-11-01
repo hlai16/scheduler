@@ -29,6 +29,7 @@ export default function Application() {
         student: name,
         interviewer
       };
+      bookInterview(interview.interviewer, interview);
     }
     return (
       <Appointment
