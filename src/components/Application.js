@@ -22,7 +22,7 @@ export default function Application() {
   const schedule = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
     function bookInterview(id, interview) {
-      console.log(id, interview);
+      // console.log(id, interview);
       const appointment = {
         ...state.appointments[id],
         interview: { ...interview }
@@ -31,15 +31,9 @@ export default function Application() {
         ...state.appointments,
         [id]: appointment
       };
-      setState(...appointments)
+      setState(...state, appointments)
     }
-    function save(name, interviewer) {
-      const interview = {
-        student: name,
-        interviewer
-      };
-      bookInterview(interview.interviewer, interview);
-    }
+    
     return (
       <Appointment
         key={appointment.id}
@@ -48,7 +42,6 @@ export default function Application() {
         interview={interview}
         interviewers={dailyInterviewers}
         bookInterview={bookInterview}
-        save={save}
       />
     );
   });
