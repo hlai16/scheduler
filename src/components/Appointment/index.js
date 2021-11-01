@@ -32,7 +32,7 @@ export default function Appointment(props) {
                     name={props.name}
                     value={props.value}
                     interviewers={props.interviewers}
-                    onSave={props.onSave}
+                    onSave={props.save}
                     onCancel={back}
                 />}
         </article>

@@ -21,7 +21,15 @@ export default function Application() {
   const dailyInterviewers = getInterviewersForDay(state, state.day);
   const schedule = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
-
+    function bookInterview(id, interview) {
+      console.log(id, interview);
+    }
+    function save(name, interviewer) {
+      const interview = {
+        student: name,
+        interviewer
+      };
+    }
     return (
       <Appointment
         key={appointment.id}
@@ -29,12 +37,14 @@ export default function Application() {
         time={appointment.time}
         interview={interview}
         interviewers={dailyInterviewers}
+        bookInterview={bookInterview}
+        save={save}
       />
     );
   });
 
   const setDay = day => setState({ ...state, day });
-  
+
   // const setDays = (days) => setState(prev => ({ ...prev, days }));
 
   useEffect(() => {
