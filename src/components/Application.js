@@ -31,10 +31,10 @@ export default function Application() {
     };
     setState({ ...state, appointments })
     axios.put(`/api/appointments/${id}`, { interview })
-      .then((data) => {
-        // console.log(data);
-        setState({ ...state, appointments })
-      })
+      // .then(() => {
+      //   // console.log(data);
+      //   setState({ ...state, appointments })
+      // })
   }
   function cancelInterview(id) {
     // console.log(id, interview, 'book interview called');
