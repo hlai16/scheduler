@@ -36,18 +36,17 @@ export default function Application() {
         setState({ ...state, appointments })
       })
   }
-  function cancelInterview(id, interview) {
+  function cancelInterview(id) {
     // console.log(id, interview, 'book interview called');
     const appointment = {
       ...state.appointments[id],
-      interview: { ...interview }
     };
     const appointments = {
       ...state.appointments,
       [id]: appointment
     };
     setState({ ...state, appointments })
-    axios.delete(`/api/appointments/${id}`, { interview })
+    axios.delete(`/api/appointments/${id}`)
       .then((data) => {
         // console.log(data);
         setState({ ...state, appointments })
@@ -69,6 +68,7 @@ export default function Application() {
         interview={interview}
         interviewers={dailyInterviewers}
         bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
       />
     );
   });
