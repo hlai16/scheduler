@@ -4,8 +4,9 @@ import InterviewerList from "components/InterviewerList";
 import { useState } from "react";
 
 export default function Form(props) {
-    const [student, setStudent] = useState(props.student || "");
-    const [interviewer, setInterviewer] = useState(props.interviewer || null);
+    const [student, setStudent] = useState(props.name || "");
+    console.log('student', student)
+    const [interviewer, setInterviewer] = useState(props.value || null);
     const reset = function () {
         return setStudent(''), setInterviewer(null);
     }
@@ -19,7 +20,7 @@ export default function Form(props) {
                 <form autoComplete="off" onSubmit={event => event.preventDefault()}>
                     <input
                         className="appointment__create-input text--semi-bold"
-                        name={props.student}
+                        name={props.name}
                         type="text"
                         placeholder="Enter Student Name"
                         value={student}

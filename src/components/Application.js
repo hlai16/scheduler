@@ -29,33 +29,26 @@ export default function Application() {
       ...state.appointments,
       [id]: appointment
     };
-    setState({ ...state, appointments })
-    axios.put(`/api/appointments/${id}`, { interview })
-      // .then(() => {
-      //   // console.log(data);
-      //   setState({ ...state, appointments })
-      // })
+    
+    return axios.put(`/api/appointments/${id}`, { interview })
+      .then(() => {
+        setState({ ...state, appointments })
+      })
   }
   function cancelInterview(id) {
     // console.log(id, interview, 'book interview called');
     const appointment = {
-      ...state.appointments[id],
+      id: state.appointments[id].id
     };
     const appointments = {
       ...state.appointments,
       [id]: appointment
     };
-    setState({ ...state, appointments })
-    axios.delete(`/api/appointments/${id}`)
-      .then((data) => {
-        // console.log(data);
-        setState({ ...state, appointments })
-      })
-    // axios.get('/api/debug/reset')
-    //   .then((data) => {
-    //     console.log(data);
-    //     setState({ ...state, appointments })
-    //   })
+    
+    return axios.delete(`/api/appointments/${id}`)
+    .then(()=> {
+      setState({ ...state, appointments })
+    })
   }
   const schedule = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
@@ -84,7 +77,7 @@ export default function Application() {
       axios.get('/api/interviewers')
     ]).then((all) => {
       setState(prev => ({ ...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data }));
-      // console.log(all[1].data)
+      // console.log(all[2].data)
     });
   }, []);
   return (

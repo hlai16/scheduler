@@ -1,24 +1,22 @@
 
 
 export function getAppointmentsForDay(state, day) {
-    const apptObj = [];
-    if (state.days.length <= 0) {
-        return [];
-    }
+    const apptArr = [];
 
     const filteredDays = state.days.filter(daySelected => daySelected.name === day);
-    if (filteredDays.length <= 0) {
+    
+    if (!filteredDays.length || !state.days.length) {
         return [];
     }
-    const apptArr = filteredDays[0].appointments;
-    for (const id of apptArr) {
-        for (const key in state.appointments) {
-            if (id == key) {
-                apptObj.push(state.appointments[key]);
+    
+    for (let id of filteredDays[0].appointments) {
+        for (let key in state.appointments) {
+            if (id === parseInt(key)) {
+                apptArr.push(state.appointments[key]);
             }
         }
     }
-    return apptObj;
+    return apptArr;
 }
 
 export function getInterview(state, interview) {
@@ -28,7 +26,7 @@ export function getInterview(state, interview) {
         return null;
     }
     for (const key in state.interviewers){
-        if (key == interview.interviewer) {
+        if (parseInt(key) === interview.interviewer) {
             newObj = {
                 'interviewer': {
                     'avatar': state.interviewers[key].avatar,
@@ -43,22 +41,29 @@ export function getInterview(state, interview) {
 }
 
 export function getInterviewersForDay(state, day) {
-    const interviewersObj = [];
-    if (state.days.length <= 0) {
+    const finalInterviewersArr = [];
+    if (!state.days.length) {
         return [];
     }
 
     const filteredDays = state.days.filter(daySelected => daySelected.name === day);
-    if (filteredDays.length <= 0) {
+   
+
+    if (!filteredDays.length) {
         return [];
     }
-    const apptArr = filteredDays[0].appointments;
-    for (const id of apptArr) {
+    const interviewersArr = filteredDays[0].interviewers;
+    console.log('filteredDays[0]', filteredDays[0])
+    console.log('interviewersArr', interviewersArr)
+    for (const id of interviewersArr) {
+        console.log('id', id)
         for (const key in state.interviewers) {
-            if (id == key) {
-                interviewersObj.push(state.interviewers[key]);
+            console.log('key + id', key, id)
+            if (id === parseInt(key)) {
+                finalInterviewersArr.push(state.interviewers[key]);
+                console.log('!!finalinterviewersArr!!', finalInterviewersArr)
             }
         }
     }
-    return interviewersObj;
+    return finalInterviewersArr;
 }
