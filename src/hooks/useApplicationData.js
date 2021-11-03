@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import axios, { Axios } from "axios";
 import Application from "components/Application";
+import { update } from "lodash";
 // import { getAppointmentsForDay, getInterview, getInterviewersForDay } from '../helpers/selectors';
 
 export default function useApplicationData() {
@@ -23,18 +24,31 @@ export default function useApplicationData() {
             [id]: appointment
         };
 
-
         return axios.put(`/api/appointments/${id}`, { interview })
             .then(() => {
-                const days = [
-                    ...state.days
-                ]
-                days.forEach(day => {
+
+                const newDays = state.days.map(day => {
                     if (day.name === state.day) {
-                        day.spots -= 1;
+                        let spots = 0;
+                        for (const appt of day.appointments) {
+                            if (appointments[appt].interview === null) {
+                                spots++;
+                            }
+                        }
+                        return {
+                            ...day, spots
+                        };
+                    } else {
+                        return day;
                     }
                 })
-                setState(prev => ({ ...prev, appointments, days }))
+                // const updateSpots = state.days.forEach(day => {
+                //     if (isNew && day.name === state.day) {
+                //         day.spots -= 1;
+                //         return day;
+                //     }
+                // })
+                setState(prev => ({ ...prev, appointments, days: newDays }))
             })
     }
 
