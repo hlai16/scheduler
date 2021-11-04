@@ -5,9 +5,11 @@ import { useState } from "react";
 
 export default function Form(props) {
     const [student, setStudent] = useState(props.name || "");
-    console.log('student', student)
+    // using useState() to store/change the input value of student's name. Begins as "" because when form first in CREATE mode, student name input should be blank
     const [interviewer, setInterviewer] = useState(props.value || null);
+    // using useState() to store/change the selected interviewer. Begin as null because when form first in CREATE mode, none of the interviewers are selected.
     const [error, setError] = useState("");
+    // using useState() to toggle the error msg
     const reset = function () {
         return setStudent(''), setInterviewer(null);
     }
@@ -22,6 +24,7 @@ export default function Form(props) {
         }
         setError('');
         props.onSave(student, interviewer);
+        // form proceed to save if student != ""
       }
     
     return (
@@ -31,19 +34,26 @@ export default function Form(props) {
                     <input
                         className="appointment__create-input text--semi-bold"
                         name={props.name}
+                        // props.name passing down from Appointment component
                         type="text"
                         placeholder="Enter Student Name"
                         value={student}
+                        // from the useState(), student as the current state
                         data-testid="student-name-input"
+                        // for cypress testing, a secure way to run test is to have a data-testid
                         onChange={(event) => setStudent(event.target.value)}
+                        // grabbing and storing the input value
                     />
                 </form>
                 <section className="appointment__validation">{error}</section>
                 <InterviewerList
                 /* your code goes here */
                 interviewers={props.interviewers}
+                // the interviewers array passing down from Appointment component
                 value={interviewer}
+                // currently selected
                 onChange={setInterviewer}
+                // setting the state to the currently selected interviewer
                 />
             </section>
             <section className="appointment__card-right">

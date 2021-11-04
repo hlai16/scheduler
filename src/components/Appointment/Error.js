@@ -6,6 +6,7 @@ export default function Error(props) {
             <section className="appointment__error-message">
                 <h1 className="text--semi-bold">Error</h1>
                 <h3 className="text--light">{props.message}</h3>
+                {/* props.message here to describe what the error is */}
             </section>
             <img
                 className="appointment__error-close"

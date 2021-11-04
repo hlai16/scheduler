@@ -2,6 +2,7 @@
 
 export function getAppointmentsForDay(state, day) {
     const apptArr = [];
+    // must put result in array for Application.js to use to map through the appointments
     const filteredDays = state.days.filter(daySelected => daySelected.name === day);
     
     if (!filteredDays.length || !state.days.length) {
@@ -10,6 +11,7 @@ export function getAppointmentsForDay(state, day) {
     
     for (let id of filteredDays[0].appointments) {
         for (let key in state.appointments) {
+            // key is string
             if (id === parseInt(key)) {
                 apptArr.push(state.appointments[key]);
             }
@@ -21,11 +23,12 @@ export function getAppointmentsForDay(state, day) {
 
 export function getInterview(state, interview) {
     let newObj = {};
+    // the interview data in api is in object form, and since only to display and no need to map through to further break down/extract data, using object to return result is ok for this function
     if (!interview) {
-        // console.log('inside null interview block', interview)
         return null;
     }
     for (const key in state.interviewers){
+        // key is string
         if (parseInt(key) === interview.interviewer) {
             newObj = {
                 'interviewer': {
@@ -40,6 +43,7 @@ export function getInterview(state, interview) {
     }
 }
 
+// similar to getAppointmentsForDay
 export function getInterviewersForDay(state, day) {
     const finalInterviewersArr = [];
     if (!state.days.length) {

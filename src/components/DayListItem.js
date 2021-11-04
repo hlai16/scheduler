@@ -7,6 +7,7 @@ export default function DayListItem(props) {
         "day-list__item--selected": props.selected,
         "day-list__item--full": !props.spots
     });
+    // to show users in the dom keeping track of how many available spots remain per day
     const formatSpots = function (spots) {
         if (spots <= 0) {
             return 'no spots remaining';

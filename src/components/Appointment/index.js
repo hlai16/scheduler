@@ -23,7 +23,7 @@ export default function Appointment(props) {
     const { mode, transition, back } = useVisualMode(
         props.interview ? SHOW : EMPTY
     );
-    // console.log('!!', props.interview);
+    
     function save(name, interviewer) {
         const interview = {
             student: name,
@@ -31,19 +31,25 @@ export default function Appointment(props) {
         };
 
         transition(SAVING, true);
-
+        // when is in the SAVING mode ...
         props
             .bookInterview(props.id, interview)
+            // updating the appointment info
             .then(() => transition(SHOW))
+            // then transition to the SHOW mode with the appointment info
             .catch(error => transition(ERROR_SAVE, true));
+            // if fail, show ERROR mode with error message
     }
 
     function deleteAppt() {
         if (mode === CONFIRM) {
             transition(DELETING, true)
             props.cancelInterview(props.id)
+            // deleting the appointment info
                 .then(() => transition(EMPTY))
+                // transition to the EMPTY mode
                 .catch(error => transition(ERROR_DELETE, true));
+                // if fail, show ERROR mode with error message
         } else {
             transition(CONFIRM)
         }
@@ -78,6 +84,7 @@ export default function Appointment(props) {
             {mode === EDIT &&
                 <Form
                     name={props.interview.student}
+                    // taking values store in the previous SHOW mode, that has stored into the API.
                     value={props.interview.interviewer.id}
                     interviewers={props.interviewers}
                     onSave={save}

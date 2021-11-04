@@ -11,6 +11,7 @@ export default function Button(props) {
  
    return (
      <button
+      // setting buttonClass since there's more than one background-color for button styling
        className={buttonClass}
        onClick={props.onClick}
        disabled={props.disabled}

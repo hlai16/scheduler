@@ -15,6 +15,7 @@ export default function Application() {
   const dailyInterviewers = getInterviewersForDay(state, state.day);
 
   const schedule = dailyAppointments.map((appointment) => {
+    // map through each appointment and pairing up with the interview info to display into DOM
     const interview = getInterview(state, appointment.interview);
 
     return (
@@ -55,6 +56,7 @@ export default function Application() {
       <section className="schedule">
         {schedule}
         <Appointment key="last" time="5pm" />
+        {/* Last Appointment has to be 'hard coded' because don't want students to book appointment at 5pm. */}
       </section>
     </main>
   );

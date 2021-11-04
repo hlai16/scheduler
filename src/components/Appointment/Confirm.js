@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "components/Button";
-
+// taking props pass down from Appointment component
 export default function Confirm(props) {
     return (
         <main className="appointment__card appointment__card--confirm">

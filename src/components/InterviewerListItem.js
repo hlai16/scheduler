@@ -3,6 +3,7 @@ import 'components/InterviewerListItem.scss';
 import classNames from "classnames";
 
 export default function InterviewerListItem(props) {
+    // to toggle selected class
     const interviewerClass = classNames("interviewers__item", {
         "interviewers__item--selected": props.selected
     });
@@ -15,6 +16,7 @@ export default function InterviewerListItem(props) {
                 alt={props.name}
             />
             {props.selected && props.name}
+            {/* will only display interviewer's name if interviewer is selected */}
         </li>
     );
 }
