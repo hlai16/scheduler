@@ -25,3 +25,13 @@ npm test
 ```sh
 npm run storybook
 ```
+
+## Screen Shots
+
+!['Booking Appointment'](https://github.com/hlai16/scheduler/blob/master/docs/Booking%20Appointment%20Form.png?raw=true)
+
+!['Deleting Appointment'](https://github.com/hlai16/scheduler/blob/master/docs/Deleting%20Appointment.png?raw=true)
+
+!['Confirmation'](https://github.com/hlai16/scheduler/blob/master/docs/Confirmation.png?raw=true)
+
+
