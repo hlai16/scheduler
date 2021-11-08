@@ -1,7 +1,7 @@
-import React from "react";
+
 import { useState } from "react";
 import { useEffect } from "react";
-import axios, { Axios } from "axios";
+import axios from "axios";
 
 export default function useApplicationData() {
     // setting the initial state of the below 4 keys

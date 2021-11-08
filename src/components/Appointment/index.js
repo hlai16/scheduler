@@ -78,6 +78,7 @@ export default function Appointment(props) {
             {mode === SAVING && <Status message="Saving" />}
             {mode === DELETING && <Status message="Deleting" />}
             {mode === CONFIRM && <Confirm
+                message='Are you sure you want to delete this interview?'
                 onCancel={back}
                 onConfirm={deleteAppt}
             />}
